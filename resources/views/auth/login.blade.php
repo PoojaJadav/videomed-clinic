@@ -1,52 +1,68 @@
 <x-guest-layout>
-    <x-jet-authentication-card>
-        <x-slot name="logo">
-            <x-jet-authentication-card-logo/>
-        </x-slot>
+    <!-- This example requires Tailwind CSS v2.0+ -->
+    <!--
+      This example requires updating your template:
 
-        <x-jet-validation-errors class="mb-4"/>
+      ```
+      <html class="h-full">
+      <body class="h-full">
+      ```
+    -->
+    <main class="min-h-full bg-cover bg-top sm:bg-top" style="background-image: url('/images/bg.jpeg')">
+        <div class="max-w-7xl mx-auto px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-48">
+            <div class="flex-1 flex flex-col justify-center lg:justify-start py-10 px-4 sm:px-6 lg:flex-none lg:px-16">
+                <div class="mx-auto w-full max-w-sm md:w-80 xl:w-96">
+                    <div>
+                        <img class="h-16 w-auto" src="/images/logo-outer.png" alt="Workflow" loading="lazy">
+                    </div>
 
-        @if (session('status'))
-            <div class="mb-4 font-medium text-sm text-green-600">
-                {{ session('status') }}
+                    <x-jet-validation-errors class="mb-4"/>
+
+                    <div class="my-2">
+                        <form method="POST" action="{{ route('login') }}"
+                              class="space-y-5">
+                            @csrf
+                            <div>
+                                <label for="email" class="block text-sm font-normal text-white">
+                                    {{ __('Email') }}
+                                </label>
+                                <div class="mt-2">
+                                    <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email"
+                                                 :value="old('email','formatos@videomed.org')" required autofocus/>
+                                </div>
+                            </div>
+
+                            <div class="space-y-1">
+                                <label for="password" class="block text-sm font-normal text-white">
+                                    {{ __('Password') }}
+                                </label>
+                                <div class="mt-2">
+                                    <x-jet-input id="password" class="block mt-1 w-full" type="password"
+                                                 value="Formatos@"
+                                                 name="password" required autocomplete="current-password"/>
+                                </div>
+                            </div>
+
+                            <div>
+                                <x-jet-button type="submit"
+                                              class="w-full flex justify-center">
+                                    {{ __('Login') }}
+                                </x-jet-button>
+                            </div>
+                            <div class="text-sm">
+                                @if (Route::has('password.request'))
+                                    <a
+                                        href="{{ route('password.request') }}"
+                                        class="font-normal text-white hover:text-primary">
+                                        {{ __('Forgot your password?') }}
+                                    </a>
+                                @endif
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-        @endif
+        </div>
+    </main>
 
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
-
-            <div>
-                <x-jet-label for="email" value="{{ __('Email') }}"/>
-                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email"
-                             :value="old('email','formatos@videomed.org')" required autofocus/>
-            </div>
-
-            <div class="mt-4">
-                <x-jet-label for="password" value="{{ __('Password') }}"/>
-                <x-jet-input id="password" class="block mt-1 w-full" type="password"
-                             value="Formatos@"
-                             name="password" required autocomplete="current-password"/>
-            </div>
-
-            <div class="block mt-4">
-                <label for="remember_me" class="flex items-center">
-                    <x-jet-checkbox id="remember_me" name="remember"/>
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900"
-                       href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
-
-                <x-jet-button class="ml-4">
-                    {{ __('Log in') }}
-                </x-jet-button>
-            </div>
-        </form>
-    </x-jet-authentication-card>
 </x-guest-layout>
