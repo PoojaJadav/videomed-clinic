@@ -30,17 +30,19 @@
                         <thead>
                         <tr class="border-t border-gray-200">
                             <th wire:click="sortBy('first_name')"
-                                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs font-medium text-gray-500 tracking-wider flex">
+                                class="px-6 py-3 bg-gray-50 border-b border-gray-200 bg-gray-50 text-left text-xs font-medium tracking-wider text-gray-500">
                                 <span class="lg:pl-2">{{ __('Name') }}</span>
                                 <x-icons.sort/>
                             </th>
-                            <th class="px-6 py-3 bg-gray-50 border-b border-gray-200 bg-gray-50 text-left text-xs font-medium tracking-wider text-gray-500">
-                                <span class="lg:pl-2">{{ __('Phone') }}</span>
+                            <th wire:click="sortBy('email')"
+                                class="px-6 py-3 bg-gray-50 border-b border-gray-200 bg-gray-50 text-left text-xs font-medium tracking-wider text-gray-500">
+                                <span class="lg:pl-2">{{__('Email')}}/{{ __('Cel. Phone') }}</span>
                                 <x-icons.sort/>
                             </th>
                             <th wire:click="sortBy('updated_at')"
                                 class="hidden md:table-cell px-6 py-3 border-b border-gray-200 bg-gray-50 text-right text-xs font-medium text-gray-500 tracking-wider">
-                                Last updated
+                                {{ __('Last updated') }}
+                                <x-icons.sort/>
                             </th>
                             <th class="pr-6 py-3 border-b border-gray-200 bg-gray-50 text-right text-xs font-medium text-gray-500 tracking-wider"></th>
                         </tr>
@@ -57,9 +59,8 @@
                                     </div>
                                 </td>
                                 <td class="px-6 py-3 max-w-0 w-2/4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                    <div class="flex items-center space-x-3 lg:pl-2">
-                                        {{ $nurse->profile->phoneNumber }}
-                                    </div>
+                                    <div class="text-gray-900">{{ $nurse->email }}</div>
+                                    <div class="text-gray-500">{{ $nurse->profile->phoneNumber }}</div>
                                 </td>
                                 <td class="hidden md:table-cell px-6 py-3 whitespace-nowrap text-sm text-gray-500 text-right">
                                     {{ $nurse->updated_at->format('F d, Y') }}

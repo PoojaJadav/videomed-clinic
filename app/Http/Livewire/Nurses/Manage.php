@@ -4,7 +4,8 @@ namespace App\Http\Livewire\Nurses;
 
 use App\Http\Livewire\ManageModel;
 use App\Models\User;
-use function auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 use Livewire\Component;
 use function redirect;
 use function url;
@@ -22,20 +23,23 @@ class Manage extends Component
         $this->previousUrl = url()->previous();
     }
 
-    protected $rules = [
-        'model.first_name'           => ['required', 'string', 'max:255'],
-        'model.last_name'            => ['required', 'string', 'max:255'],
-        'model.last_name2'           => ['required', 'string', 'max:255'],
-        'model.profile.phone'        => ['required', 'string', 'max:255'],
-        'model.profile.country_code' => ['required', 'string', 'max:255'],
-    ];
+    protected function getRules()
+    {
+        return [
+            'model.first_name'    => ['required', 'string', 'max:255'],
+            'model.last_name'     => ['required', 'string', 'max:255'],
+            'model.last_name2'    => ['required', 'string', 'max:255'],
+            'model.email'         => ['required', 'string', 'email', Rule::unique('users', 'email')->ignore(optional($this->model)->id)],
+            'model.profile.phone' => ['required', 'numeric', 'min:1'],
+        ];
+    }
 
     protected $validationAttributes = [
-        'model.first_name'           => 'name',
-        'model.last_name'            => '1st last name',
-        'model.last_name2'           => '2nd last name',
-        'model.profile.phone'        => 'Phone',
-        'model.profile.country_code' => 'code',
+        'model.first_name'    => 'name',
+        'model.last_name'     => '1st last name',
+        'model.last_name2'    => '2nd last name',
+        'model.profile.phone' => 'cel. phone',
+        'model.email'         => 'email',
     ];
 
     public function render()
@@ -47,7 +51,18 @@ class Manage extends Component
     {
         $this->validate();
 
+        $profile = $this->model->profile;
+        unset($this->model->profile);
+        $password = rand();
+
+        $this->model->password = Hash::make($password);
+        $this->model->role = ROLE_NURSES;
         $this->model->save();
+
+        $this->model->profile()->create([
+            'country_code' => 34,
+            'phone'        => data_get($profile, 'phone'),
+        ]);
 
         return redirect()->route('nurses.index');
     }
@@ -66,7 +81,14 @@ class Manage extends Component
     {
         $this->validate();
 
+        $profile = $this->model->profile;
+        unset($this->model->profile);
+
         $this->model->save();
+        $this->model->profile()->update([
+            'country_code' => 34,
+            'phone'        => $profile->phone,
+        ]);
 
         return redirect($this->previousUrl);
     }

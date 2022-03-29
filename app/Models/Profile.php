@@ -10,6 +10,8 @@ class Profile extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['user_id', 'country_code', 'phone'];
+
     protected function phoneNumber(): Attribute
     {
         return Attribute::get(function ($value, $attributes) {

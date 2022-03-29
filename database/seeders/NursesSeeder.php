@@ -2,11 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Profile;
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
 
 class NursesSeeder extends Seeder
 {
@@ -20,7 +17,7 @@ class NursesSeeder extends Seeder
         User::factory()->count(15)
             ->hasProfile(1)
             ->create([
-                'role' => ROLE_NURSES
+                'role' => ROLE_NURSES,
             ]);
     }
 }

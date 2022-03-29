@@ -3,7 +3,6 @@
 namespace App\Http\Livewire\Nurses;
 
 use App\Http\Livewire\WithSorting;
-use App\Models\Nurse;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -31,7 +30,7 @@ class Index extends Component
                 })
                 ->with('profile')
                 ->latest()
-                ->paginate(PER_PAGE)
+                ->paginate(PER_PAGE),
         ]);
     }
 }

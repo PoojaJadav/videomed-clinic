@@ -5,8 +5,10 @@
     "The :attribute must contain at least one uppercase and one lowercase letter.": "The :attribute must contain at least one uppercase and one lowercase letter.",
     "The given :attribute has appeared in a data leak. Please choose a different :attribute.": "The given :attribute has appeared in a data leak. Please choose a different :attribute.",
     "Nurses Personnel": "Nurses Personnel",
+    "Last updated": "Last updated",
     "Name": "Name",
     "1st last name": "1st last name",
     "2nd last name": "2nd last name",
-    "Cel. Phone": "Cel. Phone"
+    "Cel. Phone": "Cel. Phone",
+    "cel. phone": "cel. phone"
 }

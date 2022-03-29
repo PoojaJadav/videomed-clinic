@@ -20,7 +20,7 @@ class ProfileFactory extends Factory
         return [
             'user_id'      => User::inRandomOrder()->first(),
             'country_code' => '34',
-            'phone'        => $this->faker->numberBetween()
+            'phone'        => $this->faker->numberBetween(),
         ];
     }
 }

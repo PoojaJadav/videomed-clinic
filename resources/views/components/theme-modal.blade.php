@@ -17,11 +17,11 @@
         show: @entangle($attributes->wire('model')).defer
     }"
     x-show="show"
-    x-on:keydown.escape.window="show = false"
+    {{--x-on:keydown.escape.window="show = false"--}}
     x-cloak
     class="fixed inset-0 z-10 h-screen overflow-y-auto py-10">
     <div x-show="show" x-cloak
-         @click="show = false"
+         {{--@click="show = false"--}}
          class="fixed inset-0 w-full h-full z-40 bg-black bg-opacity-50"
          x-transition:enter="ease-out duration-300"
          x-transition:enter-start="opacity-0"

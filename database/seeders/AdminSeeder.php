@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -22,7 +21,7 @@ class AdminSeeder extends Seeder
             'last_name2' => null,
             'email'      => 'formatos@videomed.org',
             'password'   => Hash::make('Formatos@'),
-            'role'       => ROLE_ADMIN
+            'role'       => ROLE_ADMIN,
         ]);
     }
 }
