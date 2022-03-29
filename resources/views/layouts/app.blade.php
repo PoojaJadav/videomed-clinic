@@ -21,7 +21,7 @@
 <body class="h-full font-sans antialiased">
 <x-jet-banner />
 
-<div class="min-h-full">
+<div class="min-h-full bg-[#f2f3f8]">
 @include('navigation-menu')
 
 <!-- Page Content -->

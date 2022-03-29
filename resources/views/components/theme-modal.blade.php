@@ -40,7 +40,7 @@
          x-transition:leave-start="opacity-100 sm:scale-100"
          x-transition:leave-end="opacity-0 sm:scale-95"
     >
-        <div class="py-4 px-6 md:py-6 md:px-8 flex items-center bg-gray-800 text-white">
+        <div class="py-4 px-6 md:py-6 md:px-8 flex items-center bg-cyan-800 text-white">
             <div class="flex-grow w-1/2 pr-6 md:pr-10 lg:pr-20 text-xl xl:text-2xl">
                 {{$title}}
             </div>
