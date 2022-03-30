@@ -10,14 +10,14 @@
                         </div>
                         <input type="text" wire:model="search" name="search" id="search"
                                class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-9 sm:text-sm border-gray-300 rounded-md"
-                               placeholder="Search">
+                               placeholder="{{ __('Search') }}">
                     </div>
                 </div>
                 <div class="mt-4 ml-2">
                     <div class="text-right">
                         <x-jet-button wire:click="$emit('Nurses.Manage.create')"
                                       class="md:px-6">
-                            + {{ __('Add Stuff') }}
+                            + {{ __('Add Staff') }}
                         </x-jet-button>
                     </div>
                     <livewire:nurses.manage/>
