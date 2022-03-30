@@ -19,6 +19,5 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-    Route::view('dashboard', 'dashboard')->name('dashboard');
-    Route::resource('nurses', NurseController::class);
+    Route::resource('admin/nurses', NurseController::class);
 });
