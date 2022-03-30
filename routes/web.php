@@ -21,3 +21,7 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('admin/nurses', NurseController::class);
 });
+
+Route::get('nurse-welcome', function () {
+    return (new \App\Notifications\NurseWelcomeNotification(rand()))->toMail(\App\Models\User::first());
+});

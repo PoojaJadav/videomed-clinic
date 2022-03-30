@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Nurses;
 
 use App\Http\Livewire\ManageModel;
 use App\Models\User;
+use App\Notifications\NurseWelcomeNotification;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
@@ -30,7 +31,7 @@ class Manage extends Component
             'model.last_name'     => ['required', 'string', 'max:255'],
             'model.last_name2'    => ['required', 'string', 'max:255'],
             'model.email'         => ['required', 'string', 'email', Rule::unique('users', 'email')->ignore(optional($this->model)->id)],
-            'model.profile.phone' => ['required', 'numeric', 'min:1'],
+            'model.profile.phone' => ['required', 'numeric', 'min:10'],
         ];
     }
 
@@ -63,6 +64,8 @@ class Manage extends Component
             'country_code' => 34,
             'phone'        => data_get($profile, 'phone'),
         ]);
+
+        $this->model->notify((new NurseWelcomeNotification($password)));
 
         return redirect()->route('nurses.index');
     }

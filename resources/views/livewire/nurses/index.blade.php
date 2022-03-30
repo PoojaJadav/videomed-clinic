@@ -60,7 +60,7 @@
                                 </td>
                                 <td class="px-6 py-3 max-w-0 w-2/4 whitespace-nowrap text-sm font-medium text-gray-900">
                                     <div class="text-gray-900">{{ $nurse->email }}</div>
-                                    <div class="text-gray-500">{{ $nurse->profile->phoneNumber }}</div>
+                                    <div class="text-gray-500">{{ optional($nurse->profile)->phoneNumber }}</div>
                                 </td>
                                 <td class="hidden md:table-cell px-6 py-3 whitespace-nowrap text-sm text-gray-500 text-right">
                                     {{ $nurse->updated_at->format('F d, Y') }}

@@ -21,5 +21,12 @@
     "Select All": "Seleccione Todo",
     "Create Nurse": "Crear enfermera",
     "Edit Nurse": "Editar enfermera",
-    "Cancel": "Cancelar"
+    "Cancel": "Cancelar",
+    "Nurse Welcome Notification": "Notificación de bienvenida a la enfermera",
+    "Welcome to VideoMED/ Formats": "Bienvenida a VideoMED/ Formatos",
+    "The following information will allow you to access the format platform to send to patients. As soon as you log in you can change your password.": "Las siguiente información te permitirá accesar la plataforma de formatos para enviar a pacientes. Apenas accedas podrás cambiar tu contraseña.",
+    "Link": "Enlace",
+    "Email Username": "Email Usuario",
+    "Password": "Contraseña",
+    "Thank You": "Gracias"
 }

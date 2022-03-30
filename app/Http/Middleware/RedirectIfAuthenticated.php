@@ -12,9 +12,9 @@ class RedirectIfAuthenticated
     /**
      * Handle an incoming request.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @param \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
-     * @param string|null ...$guards
+     * @param  string|null  ...$guards
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function handle(Request $request, Closure $next, ...$guards)
@@ -25,9 +25,9 @@ class RedirectIfAuthenticated
             if (Auth::guard($guard)->check()) {
                 if (Auth::user()->hasRole(ROLE_ADMIN)) {
                     return redirect(RouteServiceProvider::ADMIN_HOME);
-                } else if (Auth::user()->hasRole(ROLE_NURSES)) {
+                } elseif (Auth::user()->hasRole(ROLE_NURSES)) {
                     return redirect(RouteServiceProvider::NURSES_HOME);
-                } else if (Auth::user()->hasRole(ROLE_PATIENT)) {
+                } elseif (Auth::user()->hasRole(ROLE_PATIENT)) {
                     return redirect(RouteServiceProvider::PATIENT_HOME);
                 } else {
                     return redirect(RouteServiceProvider::HOME);
