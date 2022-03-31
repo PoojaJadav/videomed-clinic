@@ -52,7 +52,7 @@
                             <tr>
                                 <td class="px-6 py-3 max-w-0 w-2/4 whitespace-nowrap text-sm font-medium text-gray-900">
                                     <div class="flex items-center space-x-3 lg:pl-2">
-                                        <a href="{{ route('nurses.show', $nurse) }}"
+                                        <a href="{{ route('admin.nurses.show', $nurse) }}"
                                            class="truncate hover:text-gray-600">
                                             {{ $nurse->name }}
                                         </a>

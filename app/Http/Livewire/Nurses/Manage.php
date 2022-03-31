@@ -65,9 +65,9 @@ class Manage extends Component
             'phone'        => data_get($profile, 'phone'),
         ]);
 
-        $this->model->notify((new NurseWelcomeNotification($password)));
+        $this->model->notify((new NurseWelcomeNotification(auth()->id(), $password)));
 
-        return redirect()->route('nurses.index');
+        return redirect()->route('admin.nurses.index');
     }
 
     public function edit(User $user)

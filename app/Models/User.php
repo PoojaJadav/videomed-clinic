@@ -4,7 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
@@ -75,8 +77,28 @@ class User extends Authenticatable
         return $this->hasOne(Profile::class);
     }
 
+    public function clinic()
+    {
+        return $this->hasOne(Clinic::class, 'admin_id');
+    }
+
     public function hasRole($role)
     {
         return $this->role === $role;
+    }
+
+    public function updateProfilePhoto(UploadedFile $photo)
+    {
+        tap($this->profile_photo_path, function ($previous) use ($photo) {
+            $this->forceFill([
+                'profile_photo_path' => $photo->store(
+                    'profile-photos', ['disk' => $this->profilePhotoDisk()]
+                ),
+            ])->save();
+
+            if ($previous) {
+                Storage::disk($this->profilePhotoDisk())->delete($previous);
+            }
+        });
     }
 }

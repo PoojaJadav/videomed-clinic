@@ -58,7 +58,7 @@
                 <div class="px-2 space-y-1">
                     <!-- Current: "bg-cyan-800 text-white", Default: "text-cyan-100 hover:text-white hover:bg-cyan-600" -->
 
-                    <a href="{{ route('nurses.index') }}"
+                    <a href="{{ route('admin.nurses.index') }}"
                        class="text-cyan-100 hover:text-white hover:bg-cyan-600 group flex items-center px-2 py-2 text-base font-medium rounded-md">
                         <!-- Heroicon name: outline/user-group -->
                         <svg class="mr-4 flex-shrink-0 h-6 w-6 text-cyan-200" xmlns="http://www.w3.org/2000/svg"
@@ -79,7 +79,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                   d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
                         </svg>
-                        {{ __('Profile') }}
+                        {{ __('Clinic info') }}
                     </a>
                 </div>
             </nav>
@@ -103,7 +103,7 @@
                 <div class="px-2 space-y-1">
                     <!-- Current: "bg-cyan-800 text-white", Default: "text-cyan-100 hover:text-white hover:bg-cyan-600" -->
 
-                    <a href="{{ route('nurses.index') }}"
+                    <a href="{{ route('admin.nurses.index') }}"
                        class="text-cyan-100 hover:text-white hover:bg-cyan-600 group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-md">
                         <!-- Heroicon name: outline/user-group -->
                         <svg class="mr-4 flex-shrink-0 h-6 w-6 text-cyan-200" xmlns="http://www.w3.org/2000/svg"
@@ -114,7 +114,7 @@
                         {{ __('Nurses Personnel') }}
                     </a>
 
-                    <a href="{{ route('profile.show') }}"
+                    <a href="{{ route('admin.clinics.show', auth()->user()->clinic) }}"
                        class="text-cyan-100 hover:text-white hover:bg-cyan-600 group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-md">
                         <!-- Heroicon name: setting -->
                         <svg class="mr-4 h-6 w-6 text-cyan-200" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -124,9 +124,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                   d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
                         </svg>
-                        {{ __('Profile') }}
+                        {{ __('Clinic info') }}
                     </a>
-
                 </div>
             </nav>
         </div>

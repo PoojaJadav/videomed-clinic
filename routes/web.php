@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClinicController;
 use App\Http\Controllers\NurseController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,9 +20,12 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-    Route::resource('admin/nurses', NurseController::class);
+    Route::prefix('admin')->name('admin.')->group(function () {
+        Route::resource('nurses', NurseController::class);
+        Route::get('clinics/{clinic}', ClinicController::class)->name('clinics.show');
+    });
 });
 
 Route::get('nurse-welcome', function () {
-    return (new \App\Notifications\NurseWelcomeNotification(rand()))->toMail(\App\Models\User::first());
+    return (new \App\Notifications\NurseWelcomeNotification(\App\Models\User::first(), rand()))->toMail(\App\Models\User::first());
 });

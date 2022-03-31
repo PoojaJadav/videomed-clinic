@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Clinic;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -15,7 +16,7 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        User::factory()->create([
+        $admin = User::factory()->create([
             'first_name' => 'Videomed',
             'last_name'  => null,
             'last_name2' => null,
@@ -23,5 +24,7 @@ class AdminSeeder extends Seeder
             'password'   => Hash::make('Formatos@'),
             'role'       => ROLE_ADMIN,
         ]);
+
+        Clinic::factory()->create(['admin_id' => $admin->id]);
     }
 }
